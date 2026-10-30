@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # cdd-configdrift-AlertOnSchemaViolation
 Validates a configuration file against a pre-defined JSON schema. Alerts if the configuration violates the schema. Uses `jsonschema` library. - Focused on Detects unauthorized or unexpected changes in configuration files (e.g., YAML, JSON). Compares current configurations against baselines and alerts on deviations. Primarily designed for identifying configuration hardening issues.
 
