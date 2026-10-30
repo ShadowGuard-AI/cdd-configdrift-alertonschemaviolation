@@ -82,7 +82,11 @@ def load_config(config_file, format=None):
                     except yaml.YAMLError:
                         raise ValueError(f"Could not determine format of {config_file}.  Please specify format using -f/--format.")
                 
-        if not config_data:
+        # Only None means no data (an empty YAML document). A parsed {}
+        # or [] is a real configuration value: rejecting it here hid the
+        # schema verdict, so '{}' against a schema requiring a key was
+        # reported as an empty file instead of as that missing key.
+        if config_data is None:
             raise ValueError(f"Configuration file {config_file} is empty or contains no data.")
 
         return config_data
