@@ -67,7 +67,11 @@ def load_config(config_file, format=None):
                 except yaml.YAMLError as e:
                      raise ValueError(f"Invalid YAML format in {config_file}: {e}")
             else:
-                # Attempt auto-detection based on content
+                # The extension tests above are case sensitive, so a
+                # file named CONFIG.JSON falls through to this content
+                # branch even though its format is knowable from its
+                # name. The content branch reaches the same answer for
+                # JSON, so the cost is a detour, not a failure.
                 content = f.read()
                 if not content.strip():  # Check for empty file
                     raise ValueError(f"Configuration file {config_file} is empty.")
@@ -142,9 +146,17 @@ def validate_config(config_data, schema_data):
         jsonschema.exceptions.SchemaError: If the schema itself is invalid.
     """
     try:
+        # validate stops at the first violation it finds, so a run
+        # reports one problem at a time no matter how many the file
+        # has; iter_errors would list them all. The alert in this
+        # tool's name is also only this: a printed error and exit 1.
+        # Nothing is sent anywhere, no webhook, no mail, no log ship.
         validate(instance=config_data, schema=schema_data)
         return True
     except jsonschema.exceptions.ValidationError as e:
+        # Re-raising with a flattened message drops the structured
+        # fields the original error carried, the path into the config
+        # among them, so the printed alert is prose only.
         raise jsonschema.exceptions.ValidationError(f"Configuration validation error: {e}")
     except jsonschema.exceptions.SchemaError as e:
         raise jsonschema.exceptions.SchemaError(f"Invalid schema: {e}")
