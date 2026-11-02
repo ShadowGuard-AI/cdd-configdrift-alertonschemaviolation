@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" role="img" aria-label="The car and its shaft in three bands: an indicator arrow creeping notch to notch far above, the lever moving in single deliberate notches while a light travels the rear wall and the blue bell shakes once at a violation, string tags turning face in below">
+<rect x="0" y="0" width="1200" height="360" fill="#ddd3ba"/>
+<rect x="470" y="0" width="260" height="360" fill="#4c4a44"/>
+<g stroke="#8f8a7c" stroke-width="3"><line x1="520" y1="26" x2="520" y2="44"/><line x1="570" y1="26" x2="570" y2="44"/><line x1="620" y1="26" x2="620" y2="44"/><line x1="670" y1="26" x2="670" y2="44"/></g>
+<polygon points="520,52 534,52 527,68" fill="#e8e2cf">
+<animate attributeName="points" values="520,52 534,52 527,68;520,52 534,52 527,68;570,52 584,52 577,68;570,52 584,52 577,68;620,52 634,52 627,68;620,52 634,52 627,68;520,52 534,52 527,68" keyTimes="0;0.3;0.36;0.62;0.68;0.94;1" dur="20s" repeatCount="indefinite"/></polygon>
+<g>
+<path d="M300 250 A130 130 0 0 1 560 250" fill="#d8cdb4" stroke="#bcb090" stroke-width="3"/>
+<g stroke="#7a6e54" stroke-width="5"><line x1="316" y1="238" x2="332" y2="228"/><line x1="352" y1="182" x2="370" y2="178"/><line x1="422" y1="146" x2="430" y2="128"/><line x1="492" y1="178" x2="510" y2="182"/><line x1="528" y1="228" x2="544" y2="238"/></g>
+<g>
+<animateTransform attributeName="transform" type="rotate" values="0 430 250;-14 430 250;-14 430 250;-28 430 250;-28 430 250;0 430 250" keyTimes="0;0.2;0.45;0.55;0.8;1" dur="14s" repeatCount="indefinite"/>
+<line x1="430" y1="250" x2="430" y2="140" stroke="#b9bcc0" stroke-width="10"/>
+<line x1="430" y1="168" x2="430" y2="140" stroke="#4a3a30" stroke-width="15"/></g>
+<circle cx="430" cy="250" r="14" fill="#8c9096"/>
+<polygon points="398,96 462,96 470,124 390,124" fill="#2f4d8f">
+<animateTransform attributeName="transform" type="rotate" values="0 430 92;0 430 92;-7 430 92;6 430 92;0 430 92;0 430 92" keyTimes="0;0.52;0.56;0.6;0.64;1" dur="14s" repeatCount="indefinite"/></polygon>
+</g>
+<g fill="#2f4d8f" opacity="0">
+<animate attributeName="opacity" values="0;0.3;0.3;0;0" keyTimes="0;0.2;0.5;0.6;1" dur="14s" repeatCount="indefinite"/>
+<rect x="600" y="120" width="8" height="180" fill="#2f4d8f"/></g>
+<g stroke="#7a6e54" stroke-width="3"><line x1="640" y1="120" x2="640" y2="140"/><line x1="720" y1="120" x2="720" y2="140"/><line x1="800" y1="120" x2="800" y2="140"/><line x1="880" y1="120" x2="880" y2="140"/></g>
+<g><animateTransform attributeName="transform" type="rotate" values="0 640 140;24 640 140;0 640 140" dur="11s" repeatCount="indefinite"/><polygon points="628,140 652,140 649,176 631,176" fill="#cec4a8" stroke="#8c8266"/></g>
+<g><animateTransform attributeName="transform" type="rotate" values="0 720 140;-20 720 140;0 720 140" dur="13s" begin="2s" repeatCount="indefinite"/><polygon points="708,140 732,140 729,176 711,176" fill="#cec4a8" stroke="#8c8266"/></g>
+<g><animateTransform attributeName="transform" type="rotate" values="0 800 140;18 800 140;0 800 140" dur="15s" begin="4s" repeatCount="indefinite"/><polygon points="788,140 812,140 809,176 791,176" fill="#cec4a8" stroke="#8c8266"/></g>
+<g><animateTransform attributeName="transform" type="rotate" values="0 880 140;-24 880 140;0 880 140" dur="12s" begin="1s" repeatCount="indefinite"/><polygon points="868,140 892,140 889,176 871,176" fill="#cec4a8" stroke="#8c8266"/></g>
+<rect x="0" y="316" width="1200" height="44" fill="#c9bd9f"/>
+</svg>
