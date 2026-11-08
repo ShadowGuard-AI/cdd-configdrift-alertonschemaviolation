@@ -3,99 +3,102 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cdd-configdrift-alertonschemaviolation: The Elevator Operator's Last Building</title>
-<meta name="description" content="Validates a configuration file against a JSON schema and gives the alert when the configuration violates the schema, through the jsonschema library.">
+<title>cdd-configdrift-alertonschemaviolation: The String Line</title>
 <style>
-@font-face{font-family:'Ballet';src:url('fonts/Ballet.ttf') format('truetype');}
-@font-face{font-family:'Alegreya Sans';src:url('fonts/AlegreyaSans.ttf') format('truetype');}
-:root{--beige:#d8cdb4;--beige2:#e6ddc6;--blue:#2f4d8f;--blued:#243d73;--silver:#b9bcc0;--tea:#b98d4f;--ink:#2a2620}
-*{box-sizing:border-box}body{margin:0;background:var(--beige);color:var(--ink);font-family:'Alegreya Sans',sans-serif;line-height:1.65}
-h1,h2,h3{font-family:'Ballet',cursive;color:var(--blue);font-weight:400}
-h1{font-size:2.6rem}h2{font-size:2rem}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;background:var(--beige)}
-.hero img.heroimg{width:100%;height:58vh;object-fit:cover;display:block}
-.hero .in{padding:1rem 6vw 2rem;max-width:1120px;margin:0 auto;width:100%}
-.logo{width:230px}
-main{padding:0 6vw 3rem;max-width:1120px;margin:0 auto}
-nav{display:flex;gap:.9rem;flex-wrap:wrap;margin:1.2rem 0}
-.plate{display:inline-block;text-decoration:none;font-family:'Ballet',cursive;font-size:1.25rem;color:var(--blue);padding:.35rem 1.3rem .55rem;background:var(--beige2);border:1px solid #b3a67f;border-bottom:5px solid var(--blue);border-radius:4px 4px 46% 46%/4px 4px 14px 14px;transition:border-color .15s,transform .1s}
-.plate:hover{border-bottom-color:transparent;background:linear-gradient(90deg,var(--beige2),#f2ecd9,var(--beige2))}
-.plate:active{transform:translateY(2px)}
-.plate:focus-visible{outline:3px solid var(--silver);outline-offset:2px}
-.plate::before{content:none}
-a{color:var(--blued)}
-a::before{content:'';display:inline-block;width:14px;height:11px;margin-right:.45em;background:linear-gradient(180deg,#f0ead6 50%,var(--blue) 50%);border:1px solid #9a8f6e;vertical-align:0;transition:transform .15s}
-a:hover::before{transform:translateX(3px)}
-.hook{background:var(--beige2);border:1px solid #b3a67f;border-top:8px solid var(--silver);padding:.4rem 1.5rem 1.3rem;margin:1.9rem 0;position:relative}
-.hook::after{content:'';position:absolute;bottom:10px;right:12px;width:18px;height:24px;background:#ded2ae;border:1px solid #a89a78;transform:rotate(6deg)}
-.floor{font-family:'Alegreya Sans',sans-serif;letter-spacing:.14em;font-size:.82rem;color:var(--blued);text-transform:uppercase}
-.rail{height:8px;margin:2.2rem 0;background:linear-gradient(var(--silver),var(--silver));background-size:100% 3px;background-position:0 2px;background-repeat:no-repeat;position:relative}
-.rail::before{content:'';position:absolute;inset:0;background:radial-gradient(circle 4px at 8% 4px,#8c9096 98%,transparent),radial-gradient(circle 4px at 28% 4px,#8c9096 98%,transparent),radial-gradient(circle 4px at 48% 4px,#8c9096 98%,transparent),radial-gradient(circle 4px at 68% 4px,#8c9096 98%,transparent),radial-gradient(circle 4px at 88% 4px,#8c9096 98%,transparent)}
-pre{background:#efe8d2;color:var(--ink);padding:1rem;overflow-x:auto;font-size:.93rem;border-left:5px solid var(--blue)}
-.pin{display:flex;gap:1rem;padding:.5rem 0;border-bottom:1px solid #c4b891}
-.pin b{font-family:'Alegreya Sans',sans-serif;min-width:170px;color:var(--blued)}
-.notice{background:#e9e0c6;border:1px solid #b3a67f;padding:.3rem 1.2rem 1rem;margin:1.2rem 0;box-shadow:2px 3px 0 rgba(90,80,50,.25)}
-footer{padding:1rem 6vw 2.4rem;max-width:1120px;margin:0 auto}
+@font-face { font-family: "Neucha"; src: url("fonts/Neucha-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Niramit"; src: url("fonts/Niramit-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Niramit"; src: url("fonts/Niramit-700.woff2") format("woff2"); font-weight: 700; }
+:root {
+  --mortar: #f6f0e4; --yard: #efe7d6; --ink: #38322a; --soft: #716552;
+  --brick: #b4552d; --timber: #6d4c33; --string: #2456a6; --line: #ddd0b8; --card: #fffdf8;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--yard); color: var(--ink); font-family: "Niramit", sans-serif; line-height: 1.55; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px 64px; }
+header.hero { text-align: center; padding: 52px 0 8px; }
+img.hero-logo { width: min(430px, 82vw); border-radius: 10px; box-shadow: 0 10px 34px rgba(56,50,42,.22); }
+h1, h2 { font-family: "Neucha", cursive; font-weight: 400; line-height: 1.15; }
+h1 { font-size: clamp(28px, 5vw, 46px); margin: 26px 0 6px; }
+.tagline { color: var(--soft); font-size: 19px; margin: 0 auto; max-width: 680px; }
+.btns { margin: 22px 0 6px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+a.btn { font-family: "Neucha", cursive; text-decoration: none; padding: 11px 22px; border-radius: 999px; border: 2px solid var(--timber); color: var(--timber); background: transparent; }
+a.btn.solid { background: var(--string); border-color: var(--string); color: #fff; }
+figure { margin: 30px 0; }
+figure img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 8px 28px rgba(56,50,42,.18); }
+figcaption { color: var(--soft); font-size: 15px; text-align: center; margin-top: 9px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 34px 0; }
+.fact { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--string); border-radius: 8px; padding: 14px 16px; }
+.fact b { display: block; font-family: "Neucha", cursive; font-weight: 400; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--brick); margin-bottom: 4px; }
+section { margin: 38px 0; }
+h2 { font-size: 27px; margin: 0 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 7px; }
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+pre { background: #3d362c; color: #f3ecdd; padding: 15px 18px; border-radius: 8px; overflow-x: auto; font-size: 14.5px; }
+table { border-collapse: collapse; width: 100%; background: var(--card); }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { font-family: "Neucha", cursive; font-weight: 400; background: var(--mortar); }
+.hold { background: #eef2fa; border: 1px solid #bccdea; border-left: 6px solid var(--string); border-radius: 8px; padding: 16px 20px; }
+.hold h2 { border: none; padding: 0; }
+.hold ul { margin: 8px 0 4px; padding-left: 20px; }
+footer { margin-top: 52px; border-top: 2px solid var(--line); padding-top: 16px; color: var(--soft); font-size: 14.5px; text-align: center; }
 </style>
 </head>
 <body>
+<div class="wrap">
 <header class="hero">
-<img class="heroimg" src="assets/intro-banner.png" alt="The elevator car waiting with its gate open: the lever and notched quadrant plate in the foreground, key hooks with tags face in, the lobby desk softened behind, no writing legible">
-<div class="in">
-<img class="logo" src="assets/logo.png" alt="An elevator lever on its beige quadrant plate with a small blue bell above, above the name inscribed in blue script">
-<h1>cdd-configdrift-alertonschemaviolation</h1>
-<p>A ride in the attended car, one floor per topic. A configuration is carried up against its schema the way the operator carried a passenger against the building's rules, and where the file breaks the schema the error is announced and the ride ends.</p>
-<nav>
-<a class="plate" href="#ground">Ground Floor</a>
-<a class="plate" href="#first">First Floor</a>
-<a class="plate" href="#second">Second Floor</a>
-<a class="plate" href="#third">Third Floor</a>
-<a class="plate" href="#top">Top Floor</a>
-</nav>
-</div>
+  <img class="hero-logo" src="assets/logo.png" alt="A timber arch template frame drawn as a flat cut out emblem over a brick wall, a short course of terracotta bricks beneath it and a single blue string line stretched across the bricks">
+  <h1>cdd-configdrift-alertonschemaviolation</h1>
+  <p class="tagline">The String Line. A command line validator that checks one configuration file against one JSON schema. A brick out of line is pointed out on the spot, in print: the whole alert is a printed error and an exit code, sent nowhere else.</p>
+  <div class="btns">
+    <a class="btn solid" href="https://github.com/ShadowGuard-AI/cdd-configdrift-alertonschemaviolation">The repository</a>
+    <a class="btn" href="https://github.com/ShadowGuard-AI/cdd-configdrift-alertonschemaviolation/blob/main/main.py">main.py</a>
+  </div>
 </header>
-<main>
-<section class="hook" id="ground"><p class="floor">Ground floor</p><h2>The Charge of the Car</h2>
-<p>cdd-configdrift-AlertOnSchemaViolation validates a configuration file against a JSON schema and gives the alert when the configuration violates the schema, working through the jsonschema library.</p>
-<div class="notice"><h3>Desk notice</h3><p>The alert as documented takes the form of a printed validation error and a failing exit, with no other channel named anywhere in the README. The wider word in the opening line is narrowed here to what the verified results make plain.</p></div>
-<p><a class="plate" href="#first">TAKE IT UP AGAINST THE SCHEMA</a></p>
+
+<figure>
+  <img src="assets/intro-banner.png" alt="The blue string line close up, stretched along a brick course with one terracotta brick sitting proud of the line, the timber arch template soft behind">
+  <figcaption>The line, and the one brick sitting proud of it.</figcaption>
+</figure>
+
+<div class="facts">
+  <div class="fact"><b>Input</b>One configuration file (JSON or YAML) and one JSON schema</div>
+  <div class="fact"><b>Library</b>Validation runs through the jsonschema library</div>
+  <div class="fact"><b>Format</b><code>-f</code> sets json or yaml; the format is autodetected if the flag is omitted</div>
+  <div class="fact"><b>On a violation</b>The validation error is printed and the run exits 1</div>
+</div>
+
+<section>
+  <h2>Usage</h2>
+  <pre>python3 main.py [-f json|yaml] [-l LEVEL] CONFIG_FILE SCHEMA_FILE</pre>
+  <table>
+    <tr><th>Option</th><th>What it does</th></tr>
+    <tr><td><code>CONFIG_FILE</code></td><td>Path to the configuration file (JSON or YAML).</td></tr>
+    <tr><td><code>SCHEMA_FILE</code></td><td>Path to the JSON schema file.</td></tr>
+    <tr><td><code>-f</code>, <code>--format</code></td><td>Format of the config file: <code>json</code> or <code>yaml</code>. Autodetects if omitted.</td></tr>
+    <tr><td><code>-l</code>, <code>--log-level</code></td><td>Logging level: <code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, or <code>CRITICAL</code>. No default is stated in the README.</td></tr>
+    <tr><td><code>-h</code></td><td>Show help message and exit.</td></tr>
+  </table>
 </section>
-<div class="rail"></div>
-<section class="hook" id="first"><p class="floor">First floor</p><h2>Taking the Car Up</h2>
-<p>The install block as the README writes it, clone from the ShadowGuard-AI account, step into the directory, pip install from requirements.txt:</p>
-<pre>git clone https://github.com/ShadowGuard-AI/cdd-configdrift-alertonschemaviolation
-cd cdd-configdrift-alertonschemaviolation
-pip install -r requirements.txt</pre>
-<p>Then the working line, with its format and log level options bracketed before the two passengers every ride carries:</p>
-<pre>python3 main.py [-f json|yaml] [-l LEVEL] CONFIG_FILE SCHEMA_FILE</pre>
+
+<figure>
+  <img src="assets/banner.png" alt="A rising brick arch on a building site under its tall timber arch template, a bricklayer checking the top course with a spirit level as the blue string line runs across the work">
+  <figcaption>Work checked against the fixed frame as it rises.</figcaption>
+</figure>
+
+<section class="hold">
+  <h2>Verified behavior and stated limits</h2>
+  <ul>
+    <li>A config with port 80 against a schema requiring a minimum of 1024 printed the validation error and exited 1.</li>
+    <li>A config with port 8080 against the same schema printed "Configuration is valid." and exited 0; the same valid result was obtained with <code>-f json</code> given explicitly.</li>
+    <li>A missing config file exits 1.</li>
+    <li>The alert is a printed error and an exit code rather than any message sent elsewhere; no alert channel is named in any section.</li>
+    <li>The tool validates one configuration against one schema. It compares no baseline and tracks no drift over time.</li>
+    <li>The log level arrives with no default stated; the notch is left unpainted rather than guessed at.</li>
+  </ul>
 </section>
-<div class="rail"></div>
-<section class="hook" id="second"><p class="floor">Second floor</p><h2>The Controls on the Quadrant, One Notch per Line</h2>
-<div class="pin"><b>-h</b><span>Shows help itself and leaves.</span></div>
-<div class="pin"><b>CONFIG_FILE</b><span>The path to the configuration file, in JSON or YAML.</span></div>
-<div class="pin"><b>SCHEMA_FILE</b><span>The path to the JSON schema file.</span></div>
-<div class="pin"><b>-f, --format</b><span>Takes json or yaml, and finds the format by itself when it is left out.</span></div>
-<h3>HOW MUCH THE CAR ANNOUNCES</h3>
-<div class="pin"><b>-l, --log-level</b><span>Takes DEBUG, INFO, WARNING, ERROR, or CRITICAL.</span></div>
-<div class="notice"><h3>Desk notice</h3><p>One notch on this floor is left unpainted: the README gives no default for the log level, and this panel says so rather than guessing at one.</p></div>
-</section>
-<div class="rail"></div>
-<section class="hook" id="third"><p class="floor">Third floor</p><h2>The Rides Actually Taken</h2>
-<h3>VALIDATION ERROR, RIDE ENDED</h3>
-<div class="pin"><b>Port 80 against a minimum of 1024</b><span>Printed the validation error and exited 1.</span></div>
-<div class="pin"><b>Port 8080 against the same schema</b><span>Printed Configuration is valid. and exited 0.</span></div>
-<div class="pin"><b>The same run with the format given as json</b><span>The valid result held again, printed Configuration is valid. and exited 0.</span></div>
-<div class="pin"><b>A missing configuration file</b><span>Exits 1.</span></div>
-<p>These four entries close the floor, quoted at the lengths the README supports and no longer. No example configuration or schema file is printed in the README, although the verified entries describe both in words precise enough to quote.</p>
-</section>
-<div class="rail"></div>
-<section class="hook" id="top"><p class="floor">Top floor</p><h2>The Register Signed Off</h2>
-<p>MIT License, see LICENSE. The car is held at this floor with its gate open, and the page ends there, with no floor above it invented for symmetry.</p>
-</section>
-</main>
+
 <footer>
-<div class="rail"></div>
-<p>The last landing of the night: the car brought to the ground floor flush with the lobby stone, gate opened, lever returned to its rest notch, register signed.</p>
+  <p>cdd-configdrift-alertonschemaviolation is distributed under the MIT License; see LICENSE in the repository. Site type is set in Neucha and Niramit, self-hosted under the SIL Open Font License.</p>
 </footer>
+</div>
 </body>
 </html>
