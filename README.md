@@ -1,10 +1,10 @@
-![The car waiting with its gate open, the lever on its notched quadrant in the foreground and the blue bell above it, key tags face in and no writing legible anywhere](intro-banner.png)
+![The blue string line close up, stretched along a brick course with one terracotta brick sitting proud of the line, the timber arch template soft behind](intro-banner.png)
 
 # cdd-configdrift-alertonschemaviolation
 
-![The lobby with the car gate open and the name inscribed in blue script across the register's open page on the desk](banner.png)
+![A rising brick arch on a building site under its tall timber arch template, a bricklayer checking the top course with a spirit level as the blue string line runs across the work](banner.png)
 
-![Elevator lever on its beige quadrant plate with the small blue bell above, the heading plate](logo.png)
+![A timber arch template frame drawn as a flat cut out emblem over a brick wall, a short course of terracotta bricks beneath it and a single blue string line stretched across the bricks, the heading plate](logo.png)
 
 ![Car and shaft scene in three bands: the indicator arrow creeping notch to notch, the lever taking single deliberate notches while the bell shakes once at a violation, string tags turning face in below](scene.svg)
 
