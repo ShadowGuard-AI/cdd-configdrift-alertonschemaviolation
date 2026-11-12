@@ -10,7 +10,6 @@
 
 
 
-# cdd-configdrift-AlertOnSchemaViolation
 Validates a configuration file against a JSON schema and alerts if the configuration violates the schema. Uses the `jsonschema` library.
 
 > Desk notice: the alert in this tool is a printed error and an exit code rather than any message sent elsewhere. Its own verified behavior section narrows the promise to a printed validation error and an exit code of 1, and no alert channel is named in any section.
@@ -20,7 +19,7 @@ Validates a configuration file against a JSON schema and alerts if the configura
 ![Claim ticket perforation divider](sep-heavy.svg)
 
 ## Install
-```
+```sh
 git clone https://github.com/ShadowGuard-AI/cdd-configdrift-alertonschemaviolation
 cd cdd-configdrift-alertonschemaviolation
 pip install -r requirements.txt
@@ -30,7 +29,7 @@ pip install -r requirements.txt
 ![Claim ticket perforation divider](sep-light.svg)
 
 ## Usage
-```
+```sh
 python3 main.py [-f json|yaml] [-l LEVEL] CONFIG_FILE SCHEMA_FILE
 ```
 
@@ -60,4 +59,4 @@ python3 main.py [-f json|yaml] [-l LEVEL] CONFIG_FILE SCHEMA_FILE
 ![Claim ticket perforation divider](sep-heavy.svg)
 
 ## License
-MIT License, see LICENSE.
+MIT License, see [LICENSE](LICENSE).
